@@ -24,5 +24,16 @@ class Database {
 		}
 		return $list;
 	}
+    /*
+    Renvoi une option en HTML pour une selection de formulaire
+    Prend 1 argument
+    1er: string => nom de la table
+    */
+    public function listClasses($table){
+        $list = $this->Query($table);
+        while($data = $list->fetch()){
+            echo '<option>'.$data['name'].'</option>';
+        }
+    }
 	
 }
