@@ -1,10 +1,13 @@
 <?php
 session_start();
 
+require ('asset/php/class/autoloader.php');
+Autoloader::register();
+$database = new Database();
 
 ob_start();
-if(isset($_GET['action'])){
-    require ('asset/php/view/'.$_GET['action'].'.php');
+if(isset($_GET['page'])){
+    require ('asset/php/view/'.$_GET['page'].'.php');
 }else{
     require ('asset/php/view/acceuil.php');
 }

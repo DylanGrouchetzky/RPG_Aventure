@@ -17,7 +17,7 @@
             </div>
             <div class="row justify-content-md-center">
                 <div class="col col-md-auto">
-                    <a href=""><button class="btn btn-dark">bestiaire</button></a><br>
+                    <a href="index.php?page=bestiaire"><button class="btn btn-dark">bestiaire</button></a><br>
                 </div>
                 <div class="col col-md-auto">
                     <a href=""><button class="btn btn-dark">Commencer une partie</button></a><br>
