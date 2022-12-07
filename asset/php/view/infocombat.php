@@ -26,7 +26,7 @@ if($_SESSION['hero']['killNumbers'] <= 1){
 
 if(isset($_SESSION['status']) && $_SESSION['status'] === 'win' ){
     
-    $lose = '<p style="font-weight: bold;">Bravo vous avez réussi votre combat</p>';
+    $win = '<p style="font-weight: bold;">Bravo vous avez réussi votre combat</p>';
     $_SESSION['status'] = '';
 
 }
@@ -37,8 +37,8 @@ $_SESSION['hero']['atk'] = $_SESSION['hero']['atkInitial'];
         <h1 style="text-decoration: underline red;">Bonjour Aventurier</h1>
     <?php
 
-    if(isset($lose)){
-        echo $lose;
+    if(isset($win)){
+        echo $win;
     }else{
         echo '<br>';
     }
@@ -49,7 +49,7 @@ $_SESSION['hero']['atk'] = $_SESSION['hero']['atkInitial'];
                 <div class="card" style="width: 18rem;background-color: #BABABA">
                     <div class="row">
                         <div class="col-md-4">
-                            <img src="asset/public/classes/<?= $_SESSION['hero']['img'] ?>" class="img-fluid rounded-start" alt="..." style="padding-top: 40px">
+                            <img src="asset/public/classes/<?= $_SESSION['hero']['img'] ?>" class="img-fluid rounded-start" alt="..." style="padding-top: 40px;">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">

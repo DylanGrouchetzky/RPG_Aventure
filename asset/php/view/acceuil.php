@@ -1,3 +1,12 @@
+<?php
+
+if(!empty($_SESSION)){
+
+    $_SESSION = array();
+
+}
+
+?>
 <div style="text-align:center;">
     <h1>Bienvenue sur RPG Aventure</h1>
     <div class="container">
