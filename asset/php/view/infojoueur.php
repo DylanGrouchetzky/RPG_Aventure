@@ -5,7 +5,7 @@ if(isset($_POST['name']) && isset($_POST['classes'])){
         if($_POST['classes'] != 'Choisiser votre classes' ){
             $_SESSION['name'] = $_POST['name'];
             $_SESSION['classes'] = $_POST['classes'];
-            header('Location: index.php?page=infocombat');
+            header('Location: index.php?page=traitement');
         }else{
             $erreur = "Il manque votre classes";
         }
