@@ -1,28 +1,48 @@
 <?php
 
-$NbRandom = rand(1, 3);
+$NbRandom = rand(1, 4);
 
-$infoMonster = $database->Query('monster', 'WHERE id = "'.$NbRandom.'"');
-$infoMonster = $infoMonster->fetch();
+if(!isset($_SESSION['monster']) || empty($_SESSION['monster'])){
 
-$_SESSION['monster'] = [
-    'name' => $infoMonster['name'],
-    'pv' => $infoMonster['pv'],
-    'pvMax' => $infoMonster['pv'],
-    'atk' => $infoMonster['atk'],
-    'def' => $infoMonster['def'],
-    'img' => $infoMonster['img'],
-];
+    $infoMonster = $database->Query('monster', 'WHERE id = "'.$NbRandom.'"');
+    $infoMonster = $infoMonster->fetch();
+
+    $_SESSION['monster'] = [
+        'name' => $infoMonster['name'],
+        'pv' => $infoMonster['pv'],
+        'pvMax' => $infoMonster['pv'],
+        'atk' => $infoMonster['atk'],
+        'def' => $infoMonster['def'],
+        'img' => $infoMonster['img'],
+    ];
+
+}
 
 if($_SESSION['hero']['killNumbers'] <= 1){
     $phrase = 'Monstre déjà tué: ';
 }else{
     $phrase = "Monstres déjà tués: ";
 }
+
+if(isset($_SESSION['status']) && $_SESSION['status'] === 'win' ){
+    
+    $lose = '<p style="font-weight: bold;">Bravo vous avez réussi votre combat</p>';
+    $_SESSION['status'] = '';
+
+
+}
     ?>
     <div class="container" style="text-align:center;">
         <h1 style="text-decoration: underline red;">Bonjour Aventurier</h1>
-        </br>
+    <?php
+
+    if(isset($lose)){
+        echo $lose;
+    }else{
+        echo '<br>';
+    }
+
+    ?>
         <div class="row justify-content-md-center">
             <div class="col col-md-auto">
                 <div class="card" style="width: 18rem;background-color: #BABABA">
@@ -67,10 +87,10 @@ if($_SESSION['hero']['killNumbers'] <= 1){
         <br>
         <div class="row justify-content-md-center">
             <div class="col col-md-auto">
-                <a href="index.php?action=delete&quantite=tout"><button class="btn btn-danger">Quitter</button></a>
+                <a href="index.php?page=infojoueur"><button class="btn btn-danger">Quitter</button></a>
             </div>
             <div class="col col-md-auto">
-                <a href="index.php?action=resultat&actions=combat"><button class="btn btn-primary">Commencer</button></a>
+                <a href="index.php?page=combat"><button class="btn btn-primary">Commencer</button></a>
             </div>
         </div>
        

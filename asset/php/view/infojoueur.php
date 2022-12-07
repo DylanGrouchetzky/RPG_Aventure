@@ -5,7 +5,7 @@ if(isset($_POST['name']) && isset($_POST['classes'])){
         if($_POST['classes'] != 'Choisiser votre classes' ){
             $_SESSION['name'] = $_POST['name'];
             $_SESSION['classes'] = $_POST['classes'];
-            header('Location: index.php?page=traitement');
+            header('Location: index.php?page=createHero');
         }else{
             $erreur = "Il manque votre classes";
         }
@@ -14,10 +14,31 @@ if(isset($_POST['name']) && isset($_POST['classes'])){
     }
 }
 
+if(isset($_SESSION['status']) && $_SESSION['status'] === 'lose' ){
+    
+    $lose = '<p style="font-weight: bold;">'.$_SESSION['hero']['name'].' c\'est fait battre</p>';
+    $_SESSION['status'] = '';
+
+}
+
+if(!empty($_SESSION['monster'])){
+    
+    $_SESSION['monster'] = [];
+
+}
+
 ?>
 <div class="container" style="text-align:center;">    
     <h1>Bienvenue Joueur</h1>
-    <br>
+    <?php
+
+    if(isset($lose)){
+        echo $lose;
+    }else{
+        echo '<br>';
+    }
+
+    ?>
     <div class="row justify-content-md-center">
         <div class="col col-md-auto">
             <form action="index.php?page=infojoueur" method="POST">
