@@ -6,3 +6,6 @@ Affichage de la page d'aceuil
     -bouton pour démarer une partie crée
 
 Affichage du bestiaire des monstres du jeux
+
+Permet de crée un personnage
+Puiq d'accéder a la page de début de combat
