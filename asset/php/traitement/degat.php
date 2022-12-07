@@ -13,6 +13,7 @@ if($_SESSION['monster']['pv'] <= 0 ){
 
     $_SESSION['status'] = 'win';
     $_SESSION['monster'] = [];
+    $_SESSION['hero']['killNumbers'] = $_SESSION['hero']['killNumbers'] + 1;
     header('Location: ../../../index.php?page=infocombat');
 
 }else if($_SESSION['hero']['pv'] <= 0 ){

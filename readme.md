@@ -8,4 +8,8 @@ Affichage de la page d'aceuil
 Affichage du bestiaire des monstres du jeux
 
 Permet de crée un personnage
-Puiq d'accéder a la page de début de combat
+Puis d'accéder a la page de début de combat
+
+Ajout des fonctionnalité de combat attaque, regen, sort(uniquement pour le guerrier)
+
+Ajout du compteur de monstre tué
