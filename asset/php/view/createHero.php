@@ -14,6 +14,8 @@ $_SESSION['hero'] = [
     'atkInitial' => $donneJoueur['atk'],
     'def' => $donneJoueur['def'],
     'sort' => $donneJoueur['sort'],
+    'coutPm' => $donneJoueur['coutPm'],
+    'regen' => $donneJoueur['regen'],
     'img' => $donneJoueur['img'],
 ];
 

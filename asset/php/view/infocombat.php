@@ -46,7 +46,7 @@ $_SESSION['hero']['atk'] = $_SESSION['hero']['atkInitial'];
     ?>
         <div class="row justify-content-md-center">
             <div class="col col-md-auto">
-                <div class="card" style="width: 18rem;background-color: #BABABA">
+                <div class="card" style="width: 25rem;background-color: #BABABA">
                     <div class="row">
                         <div class="col-md-4">
                             <img src="asset/public/classes/<?= $_SESSION['hero']['img'] ?>" class="img-fluid rounded-start" alt="..." style="padding-top: 40px;">
@@ -60,6 +60,7 @@ $_SESSION['hero']['atk'] = $_SESSION['hero']['atkInitial'];
                                 <p class="card-text">PM: <?= $_SESSION['hero']['pm'] ?>/<?= $_SESSION['hero']['pmMax'] ?></p>
                                 <p class="card-text">Atk: <?= $_SESSION['hero']['atk'] ?></p>
                                 <p class="card-text">Def: <?= $_SESSION['hero']['def'] ?></p>
+                                <p class="card-text">Régénération de: <?= $_SESSION['hero']['regen'] ?> PV</p>
                             </div>
                         </div>
                     </div>

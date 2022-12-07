@@ -16,12 +16,9 @@ if(isset($_SESSION['spellTime'])){
 <div class="container" style="text-align: center; margin-top: 50px;">
     <div class="row justify-content-md-center">
         <div class="col col-md-auto">
-            <div class="card" style="width: 18rem;background-color: #BABABA">
+            <div class="card" style="width: 15rem;background-color: #BABABA">
                 <div class="row">
-                    <div class="col-md-4">
-                        <img src="asset/public/classes/<?= $_SESSION['hero']['img'] ?>" class="img-fluid rounded-start" alt="..." style="padding-top: 40px">
-                    </div>
-                    <div class="col-md-8">
+                    <div class="col">
                         <div class="card-body">
                             <h5 class="card-title"><?= $_SESSION['hero']['name'] ?></h5>
                             <h6 class="card-subtitle mb-2 text-muted"><?= $_SESSION['hero']['classes'] ?></h6>
@@ -29,6 +26,8 @@ if(isset($_SESSION['spellTime'])){
                             <p class="card-text">PM: <?= $_SESSION['hero']['pm'] ?>/<?= $_SESSION['hero']['pmMax'] ?></p>
                             <p class="card-text">Atk: <?= $_SESSION['hero']['atk'] ?></p>
                             <p class="card-text">Def: <?= $_SESSION['hero']['def'] ?></p>
+                            <p class="card-text">Régénération: <?= $_SESSION['hero']['regen'] ?> PV</p>
+
                         </div>
                     </div>
                 </div>
@@ -81,18 +80,15 @@ if(isset($_SESSION['spellTime'])){
                 </div>
 
                 <div class="col col-md-auto">
-                    <a href="asset/php/traitement/spell.php"><button class="btn btn-secondary"><?= $_SESSION['hero']['sort'] ?></button></a>
+                    <a href="asset/php/traitement/spell.php"><button class="btn btn-secondary"><?= $_SESSION['hero']['sort'] ?> cout : <?= $_SESSION['hero']['coutPm'] ?>PM</button></a>
                 </div>
             </div> 
         </div>
 
         <div class="col col-md-auto">
-        <div class="card" style="width: 18rem;background-color: #BABABA">
+        <div class="card" style="width: 10rem;background-color: #BABABA">
             <div class="row">
-                <div class="col-md-4">
-                    <img src="asset/public/monster/<?= $_SESSION['monster']['img'] ?>" class="img-fluid rounded-start" alt="..." style="padding-top: 40px">
-                </div>
-                <div class="col-md-8">
+                <div class="col">
                     <div class="card-body">
                         <h5 class="card-title"><?= $_SESSION['monster']['name'] ?></h5>      
                         <p class="card-text">PV: <?= $_SESSION['monster']['pv'] ?>/<?= $_SESSION['monster']['pvMax'] ?></p>
