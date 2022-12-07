@@ -3,6 +3,15 @@
 $pourcentPV = 100 * $_SESSION['hero']['pv'] / $_SESSION['hero']['pvMax'];
 $pourcentPVMonster = 100 * $_SESSION['monster']['pv'] / $_SESSION['monster']['pvMax'];
 
+if(isset($_SESSION['spellTime'])){
+    if($_SESSION['spellTime'] > 0){
+        $_SESSION['spellTime'] = $_SESSION['spellTime'] - 1;
+    }else if($_SESSION['spellTime'] === 0){
+        $_SESSION['spellTime'] = $_SESSION['spellTime'] - 1;
+        $_SESSION['hero']['atk'] = $_SESSION['hero']['atkInitial'];
+    }
+}
+
 ?>
 <div class="container" style="text-align: center">
     <div class="row justify-content-md-center">
@@ -50,7 +59,7 @@ $pourcentPVMonster = 100 * $_SESSION['monster']['pv'] / $_SESSION['monster']['pv
         </div>
 
         <div class="col col-md-auto">
-            <a href="index.php?action=resultat&actions=combat&combat=spell"><button class="btn btn-primary"><?= $_SESSION['hero']['sort'] ?></button></a>
+            <a href="asset/php/traitement/spell.php"><button class="btn btn-primary"><?= $_SESSION['hero']['sort'] ?></button></a>
         </div>
     </div>  
 </div>

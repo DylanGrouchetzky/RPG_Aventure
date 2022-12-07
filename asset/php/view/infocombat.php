@@ -29,8 +29,9 @@ if(isset($_SESSION['status']) && $_SESSION['status'] === 'win' ){
     $lose = '<p style="font-weight: bold;">Bravo vous avez réussi votre combat</p>';
     $_SESSION['status'] = '';
 
-
 }
+
+$_SESSION['hero']['atk'] = $_SESSION['hero']['atkInitial'];
     ?>
     <div class="container" style="text-align:center;">
         <h1 style="text-decoration: underline red;">Bonjour Aventurier</h1>
