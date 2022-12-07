@@ -46,7 +46,7 @@ $pourcentPVMonster = 100 * $_SESSION['monster']['pv'] / $_SESSION['monster']['pv
         </div>
 
         <div class="col col-md-auto">
-            <a href="index.php?action=resultat&actions=combat&combat=regen"><button class="btn btn-primary">regen</button></a>
+            <a href="asset/php/traitement/soin.php"><button class="btn btn-primary">regen</button></a>
         </div>
 
         <div class="col col-md-auto">
