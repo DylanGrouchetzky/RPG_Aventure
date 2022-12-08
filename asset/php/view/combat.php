@@ -12,6 +12,11 @@ if(isset($_SESSION['spellTime'])){
     }
 }
 
+if(isset($_SESSION['coutpm']) && $_SESSION['coutpm'] === 'manque'){
+    $manquePm = '<p style="font-weight: bold; color: red;">Rias manque de PM</p>';
+    $_SESSION['coutpm'] = "";
+}
+
 ?>
 <div class="container" style="text-align: center; margin-top: 50px;">
     <div class="row justify-content-md-center">
@@ -82,7 +87,19 @@ if(isset($_SESSION['spellTime'])){
                 <div class="col col-md-auto">
                     <a href="asset/php/traitement/spell.php"><button class="btn btn-secondary"><?= $_SESSION['hero']['sort'] ?> cout : <?= $_SESSION['hero']['coutPm'] ?>PM</button></a>
                 </div>
-            </div> 
+            </div>
+            <br>
+            <?php
+             if(isset($manquePm)){
+                ?>
+                <div class="row justify-content-md-center">
+                    <?= $manquePm ?>     
+                </div>
+                <?php
+             }
+            
+
+            ?>
         </div>
 
         <div class="col col-md-auto">
