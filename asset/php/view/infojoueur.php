@@ -58,17 +58,10 @@ if(!empty($_SESSION['hero'])){
 
                 </div>
                 <br>
-                <input type="button" name="button" value="Commencer" onClick="control(joueur)" class="btn btn-dark">
+                <input type="button" name="button" value="Commencer" onClick="controlFormJoueur(joueur)" class="btn btn-dark">
             </form>
             <a href="index.php"><button class="btn btn-dark">Retour</button></a>
+            <p id="test" style="font-weight: bold; color: red"></p>
         </div>
-        <?php
-
-        if(isset($erreur)){
-            echo '<p style="color: red;font-weight: bold;">Veuillez complet les champs vide s\'il vous plaît</p>';
-            echo '<p style="color: red;font-weight: bold;">'.$erreur.'</p>';
-        }
-
-        ?>
     </div>
 </div>

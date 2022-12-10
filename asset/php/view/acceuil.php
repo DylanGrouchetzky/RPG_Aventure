@@ -17,7 +17,7 @@ if(!empty($_SESSION)){
                     Enchainez les combats contre les créatures du donjon, pour ça: <br>
                     <ul>
                         <li class="nolist">Entrez un nom de héros</li>
-                        <li class="nolist">choissez une classe jouable</li>
+                        <li class="nolist">choissez une classe</li>
                         <li class="nolist">commencer les combats contre les monstres</li>
                     </ul>
                 </p>
