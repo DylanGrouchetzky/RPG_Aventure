@@ -67,7 +67,6 @@ $pourcentMana = 100 * $_SESSION['hero']['pm'] / $_SESSION['hero']['pmMax'];
     </div>    
 </div>
 <script>
-
 const bodyStyle = document.getElementById('body')
 bodyStyle.style.backgroundImage = "url('asset/public/fontCombat.jpg')";
 bodyStyle.style.backgroundSize = "cover";
@@ -278,5 +277,4 @@ bodyStyle.style.backgroundSize = "cover";
 
     const monster = new Combat(nameMonster,pvMonster,pvMaxMonster,atkMonster,defMonster)
     const hero = new Combat(nameHero,pvHero ,pvMaxHero,atkHero,defHero,regenHero,spellHero, pmHero)
-
 </script>
