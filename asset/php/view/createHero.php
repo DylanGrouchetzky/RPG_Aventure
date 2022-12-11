@@ -6,6 +6,7 @@ $_SESSION['hero'] = [
     'name' => $_GET['name'],
     'classes' => $_GET['classes'],
     'killNumbers' => 0,
+    'etage' => 0,
     'pv' => $donneJoueur['pv'],
     'pvMax' => $donneJoueur['pv'],
     'pm' => $donneJoueur['pm'],

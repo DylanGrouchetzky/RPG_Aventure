@@ -2,14 +2,14 @@
 <div class="container" id="bestiaire">
     <div class="row justify-content-md-center">
         <div class="col col-md-auto">
-            <h2>BESTIAIRE</h2>
-            <p>Voici le bestiaire du jeux: </p>
+            <h2 style="font-weight: bold;color: white">BESTIAIRE</h2>
+            <p style="font-weight: bold;color: white">Voici le bestiaire du jeux: </p>
             <table class="table">
                 <thead>
                     <tr>
-                        <th class="scope">#</th>
-                        <th class="scope">Image</th>
-                        <th class="scope">Nom</th>
+                        <th class="scope" style="font-weight: bold;color: white">#</th>
+                        <th class="scope" style="font-weight: bold;color: white">Image</th>
+                        <th class="scope" style="font-weight: bold;color: white">Nom</th>
                     </tr>
                 </thead>
 
@@ -20,9 +20,9 @@
                     ?>
                     <tbody>
                         <tr>
-                            <th scope="row"><?= $data['id'] ?></th>
-                            <td><img src="asset/public/monster/<?= $data['img'] ?>" alt="" style="width: 50px; heigth: 50px"></td>
-                            <td class="bold"><?= $data['name'] ?></td>
+                            <th scope="row" style="font-weight: bold;color: white"><?= $data['id'] ?></th>
+                            <td style="font-weight: bold;color: white"><img src="asset/public/monster/<?= $data['img'] ?>" alt="" style="width: 50px; heigth: 50px"></td>
+                            <td class="bold" style="font-weight: bold;color: white"><?= $data['name'] ?></td>
                         </tr>
                      </tbody>
                     <?php
@@ -37,3 +37,7 @@
         </div>
     </div>
 </div>
+<script>    
+    const bodyStyle = document.getElementById('body')
+    bodyStyle.style.backgroundImage = "url('asset/public/fontBestiaire.jpg')";
+</script>

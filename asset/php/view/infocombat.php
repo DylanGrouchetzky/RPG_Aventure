@@ -2,9 +2,24 @@
 
 $NbRandom = rand(1, 4);
 
-if(!isset($_SESSION['monster']) || empty($_SESSION['monster'])){
+if($_SESSION['hero']['killNumbers'] != 10 ){
+    if(!isset($_SESSION['monster']) || empty($_SESSION['monster'])){
 
-    $infoMonster = $database->Query('monster', 'WHERE id = "'.$NbRandom.'"');
+        $infoMonster = $database->Query('monster', 'WHERE id = "'.$NbRandom.'"');
+        $infoMonster = $infoMonster->fetch();
+
+        $_SESSION['monster'] = [
+            'name' => $infoMonster['name'],
+            'pv' => $infoMonster['pv'],
+            'pvMax' => $infoMonster['pv'],
+            'atk' => $infoMonster['atk'],
+            'def' => $infoMonster['def'],
+            'img' => $infoMonster['img'],
+        ];
+
+    }
+}else{
+    $infoMonster = $database->Query('boss', 'WHERE id = "1"');
     $infoMonster = $infoMonster->fetch();
 
     $_SESSION['monster'] = [
@@ -15,7 +30,6 @@ if(!isset($_SESSION['monster']) || empty($_SESSION['monster'])){
         'def' => $infoMonster['def'],
         'img' => $infoMonster['img'],
     ];
-
 }
 
 if($_SESSION['hero']['killNumbers'] <= 1){
@@ -32,6 +46,17 @@ if(isset($_SESSION['status']) && $_SESSION['status'] === 'win' ){
 }
 
 $_SESSION['hero']['atk'] = $_SESSION['hero']['atkInitial'];
+
+if($_SESSION['hero']['etage'] === 0){
+    $_SESSION['hero']['etage'] = 'Rez-de-chaussée';
+}
+
+$pourcentVieHero = 100 * $_SESSION['hero']['pv'] / $_SESSION['hero']['pvMax'];
+if($pourcentVieHero <= 35){
+    $vieHero = '<span style="color: red">'.$_SESSION['hero']['pv'].'</span>';
+}else{
+    $vieHero = $_SESSION['hero']['pv'];
+} 
     ?>
     <div class="container" style="text-align:center;">
         <h1 style="text-decoration: underline red;">Bonjour Aventurier</h1>
@@ -45,46 +70,114 @@ $_SESSION['hero']['atk'] = $_SESSION['hero']['atkInitial'];
 
     ?>
         <div class="row justify-content-md-center">
-            <div class="col col-md-auto">
-                <div class="card" style="width: 25rem;background-color: #BABABA">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <img src="asset/public/classes/<?= $_SESSION['hero']['img'] ?>" class="img-fluid rounded-start" alt="..." style="padding-top: 40px;">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title"><?= $_SESSION['hero']['name'] ?></h5>
-                                <h6 class="card-subtitle mb-2 text-muted"><?= $_SESSION['hero']['classes'] ?></h6>
-                                <h6 class="card-subtitle mb-2 text-muted"><?= $phrase?> <?= $_SESSION['hero']['killNumbers'] ?></h6>
-                                <p class="card-text">PV: <?= $_SESSION['hero']['pv'] ?>/<?= $_SESSION['hero']['pvMax'] ?></p>
-                                <p class="card-text">PM: <?= $_SESSION['hero']['pm'] ?>/<?= $_SESSION['hero']['pmMax'] ?></p>
-                                <p class="card-text">Atk: <?= $_SESSION['hero']['atk'] ?></p>
-                                <p class="card-text">Def: <?= $_SESSION['hero']['def'] ?></p>
-                                <p class="card-text">Régénération de: <?= $_SESSION['hero']['regen'] ?> PV</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col col-md-auto"style="width: 25rem">
+                <table class="table table-bordered border-dark">
+                    <tbody style="text-align:center">
+                        <tr>
+                            <th colspan="2"><?= $_SESSION['hero']['name'] ?></th>
+                        </tr>
+                        <tr>
+                            <th>Classes</th>
+                            <th><?= $_SESSION['hero']['classes'] ?></th>
+                        </tr>
+
+                        <tr>
+                            <th>étage</th>
+                            <th><?= $_SESSION['hero']['etage'] ?></th>
+                        </tr>
+
+                        <tr>
+                            <th>Monstre tué</th>
+                            <th><?= $_SESSION['hero']['killNumbers'] ?></th>
+                        </tr>
+
+                        <tr>
+                            <th>PV</th>
+                            <th><?= $vieHero ?>/<?= $_SESSION['hero']['pvMax'] ?></th>
+                        </tr>
+
+                        <tr>
+                            <th>PM</th>
+                            <th><?= $_SESSION['hero']['pm'] ?>/<?= $_SESSION['hero']['pmMax'] ?></th>
+                        </tr>
+
+                        <tr>
+                            <th>Atk</th>
+                            <th><?= $_SESSION['hero']['atk'] ?></th>
+                        </tr>
+
+                        <tr>
+                            <th>Def</th>
+                            <th><?= $_SESSION['hero']['def'] ?></th>
+                        </tr>
+
+                        <tr>
+                            <th>Regen</th>
+                            <th><?= $_SESSION['hero']['regen'] ?></th>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <br>
-            <div class="col col-md-auto">
+            <div class="col col-md-auto" style="width: 25rem;">
                 <p style="font-weight: bold;">Ton prochaine adversaire sera</p>
-                <div class="card" style="width: 18rem;background-color: #BABABA">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <img src="asset/public/monster/<?= $_SESSION['monster']['img'] ?>" class="img-fluid rounded-start" alt="..." style="padding-top: 40px">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title"><?= $_SESSION['monster']['name'] ?></h5>      
-                                <p class="card-text">PV: <?= $_SESSION['monster']['pv'] ?>/<?= $_SESSION['monster']['pvMax'] ?></p>
-                                <p class="card-text">Atk: <?= $_SESSION['monster']['atk'] ?></p>
-                                <p class="card-text">Def: <?= $_SESSION['monster']['def'] ?></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                if($_SESSION['hero']['killNumbers'] != 10){
+                ?>
+                <table class="table table-bordered border-dark">
+                    <tbody style="text-align:center">
+                        <tr>
+                            <th><?= $_SESSION['monster']['name'] ?></th>
+                            <th><img src="asset/public/monster/<?= $_SESSION['monster']['img'] ?>" style="width: 50px; heidth: 50px"></th>
+                        </tr>
+
+                        <tr>
+                            <th>pv</th>
+                            <th><?= $_SESSION['monster']['pv'] ?>/<?= $_SESSION['monster']['pvMax'] ?></th>
+                        </tr>
+
+                        <tr>
+                            <th>atk</th>
+                            <th><?= $_SESSION['monster']['atk'] ?></th>
+                        </tr>
+
+                        <tr>
+                            <th>def</th>
+                            <th><?= $_SESSION['monster']['def'] ?></th>
+                        </tr>
+                    </tbody>
+                </table>
+                <?php
+                }else{
+                    ?>
+                    <table class="table table-bordered border-dark">
+                        <tbody style="text-align:center">
+                            <tr>
+                                <th><?= $_SESSION['monster']['name'] ?></th>
+                                <th><img src="asset/public/monster/boss/<?= $_SESSION['monster']['img'] ?>" style="width: 50px; heidth: 50px"></th>
+                            </tr>
+
+                            <tr>
+                                <th>pv</th>
+                                <th>??/??</th>
+                            </tr>
+
+                            <tr>
+                                <th>atk</th>
+                                <th>??</th>
+                            </tr>
+
+                            <tr>
+                                <th>def</th>
+                                <th>??</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <?php
+                }
+                ?>
             </div>
+
         </div>
         <br>
         <div class="row justify-content-md-center">

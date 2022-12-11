@@ -4,7 +4,7 @@
         <link rel="stylesheet" href="asset/css/style.css">      
         <title>RPG Aventure</title>
     </head>
-    <body>
+    <body id="body">
         <?= $content ?>
         <script src="asset/js/functionOnClick.js"></script>
     </body>
