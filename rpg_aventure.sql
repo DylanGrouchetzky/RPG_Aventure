@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 08 déc. 2022 à 17:24
+-- Généré le : dim. 11 déc. 2022 à 12:51
 -- Version du serveur : 10.4.25-MariaDB
 -- Version de PHP : 8.1.10
 
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `rpg_aventure`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `boss`
+--
+
+CREATE TABLE `boss` (
+  `id` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `pv` int(11) NOT NULL,
+  `atk` int(11) NOT NULL,
+  `def` int(11) NOT NULL,
+  `img` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `boss`
+--
+
+INSERT INTO `boss` (`id`, `name`, `pv`, `atk`, `def`, `img`) VALUES
+(1, 'Crow', 200, 35, 14, 'Crow.jpg');
 
 -- --------------------------------------------------------
 
@@ -45,8 +67,8 @@ CREATE TABLE `classesjouable` (
 --
 
 INSERT INTO `classesjouable` (`id`, `name`, `pv`, `pm`, `atk`, `def`, `sort`, `coutPm`, `regen`, `img`) VALUES
-(1, 'Guerrier', 70, 20, 20, 7, 'Boost', 2, 35, 'guerrier.png'),
-(2, 'mage', 50, 100, 13, 5, 'Boule de Feu', 5, 25, 'mage.png');
+(1, 'Guerrier', 150, 50, 23, 7, 'Boost', 2, 45, 'guerrier.png'),
+(2, 'mage', 100, 150, 15, 5, 'Boule de Feu', 5, 35, 'mage.png');
 
 -- --------------------------------------------------------
 
@@ -69,13 +91,19 @@ CREATE TABLE `monster` (
 
 INSERT INTO `monster` (`id`, `name`, `pv`, `atk`, `def`, `img`) VALUES
 (1, 'Orc', 70, 15, 5, 'orc.png'),
-(2, 'Urukai', 90, 20, 10, 'urukai.png'),
+(2, 'Urukai', 90, 20, 8, 'urukai.png'),
 (3, 'Gobelin', 50, 10, 3, 'gobelin.png'),
 (4, 'Dragon', 120, 20, 12, 'dragon.png');
 
 --
 -- Index pour les tables déchargées
 --
+
+--
+-- Index pour la table `boss`
+--
+ALTER TABLE `boss`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `classesjouable`
@@ -92,6 +120,12 @@ ALTER TABLE `monster`
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
+
+--
+-- AUTO_INCREMENT pour la table `boss`
+--
+ALTER TABLE `boss`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `classesjouable`
