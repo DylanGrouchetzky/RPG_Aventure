@@ -8,9 +8,25 @@ $pourcentMana = 100 * $_SESSION['hero']['pm'] / $_SESSION['hero']['pmMax'];
     <div class="row justify-content-md-center">
         
         <div class="col col-md-auto">
+
+            <div>
+                <p id='actionJoueur' style="font-weight: bold;color: white"></p>
+                <p id='consequenceAction' style="font-weight: bold;color: white"></p>
+                <p id='actionMonster' style="font-weight: bold;color: white"></p>
+            </div>
+            <br>
+            <p id="erreurAction" style="font-weight: bold;color: red"></p>
+        </div>
+    </div>    
+</div>
+<img src="asset/public/classes/guerrierer.png" style="position: absolute;bottom: 250px; left: 80%; width: 300px; height: 300px" id="imgHero">
+<img src="asset/public/monster/<?= $_SESSION['monster']['img'] ?>" style="position: absolute;bottom: 250px; right: 75%; width: 400px; height: 400px" id="imgmonster">
+<div style="height: 200px;width: 100%;position: absolute;bottom: 0px;border: 5px solid red;border-radius: 5px;padding: 70px 5px 0px 5px;background-image: url('asset/public/fontActionCombat.png')">
+    <div class="row">
+        <div class="col">
             <div class="row justify-content-md-center">
                 <div class="col col-md-auto" style="width:150px">
-                    <p style="font-weight: bold;color: white">Vie Ennemie: </p>
+                    <p style="font-weight: bold;color: white">Vie <?= $_SESSION['monster']['name'] ?>: </p>
                 </div>
                 <div class="col col-md-auto" style="padding-top: 5px;">
                     <div class="progress" style="width: 450px">
@@ -18,25 +34,36 @@ $pourcentMana = 100 * $_SESSION['hero']['pm'] / $_SESSION['hero']['pmMax'];
                     </div>
                 </div>  
             </div>
+        </div>
 
-            <div>
-                <p id='actionJoueur' style="font-weight: bold;color: white"></p>
-                <p id='consequenceAction' style="font-weight: bold;color: white"></p>
-                <p id='actionMonster' style="font-weight: bold;color: white"></p>
-            </div>
-
-            <div class="row justify-content-md-center">
-                <div class="col col-md-auto" style="width:150px">
-                    <p style="font-weight: bold;color: white">Votre Vie: </p>
+        <div class="col">
+            <div class="row justify-content-md-center" id="buttonAction">
+                <div class="col col-md-auto" style="width:150px;">
+                    <button class="btn btn-secondary" onClick="hero.attaque(monster)"id="attaque">Attaquer</button>
                 </div>
-                <div class="col col-md-auto" style="padding-top: 5px;">
-                    <div class="progress" style="width: 450px">
-                        <div class="progress-bar bg-success" id="barreVieHero" role="progressbar" aria-label="vie" style="width:<?= $pourcentHero ?>%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><?= $_SESSION['hero']['pv'] ?> / <?= $_SESSION['hero']['pvMax'] ?></div>
-                    </div>
+                <div class="col col-md-auto" style="width:150px">
+                    <button class="btn btn-secondary" onClick="hero.regeneration(monster)"id="regen">regen</button>
                 </div>  
+                <div class="col col-md-auto" style="width:150px">
+                    <button class="btn btn-secondary" onCLick="hero.spellHero(monster)"id="spell"><?= $_SESSION['hero']['sort'] ?> <br>cout : <?= $_SESSION['hero']['coutPm'] ?>PM</button>
+                </div>
             </div>
+        </div>
 
-            <div class="row justify-content-md-center">
+        <div class="col">
+            
+        <div class="row justify-content-md-center">
+            <div class="col col-md-auto" style="width:150px">
+                <p style="font-weight: bold;color: white">Votre Vie: </p>
+            </div>
+            <div class="col col-md-auto" style="padding-top: 5px;">
+                <div class="progress" style="width: 450px">
+                    <div class="progress-bar bg-success" id="barreVieHero" role="progressbar" aria-label="vie" style="width:<?= $pourcentHero ?>%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><?= $_SESSION['hero']['pv'] ?> / <?= $_SESSION['hero']['pvMax'] ?></div>
+                </div>
+            </div>  
+        </div>
+
+                <div class="row justify-content-md-center">
                 <div class="col col-md-auto" style="width:150px">
                     <p style="font-weight: bold;color: white">Votre mana: </p>
                 </div>
@@ -46,25 +73,8 @@ $pourcentMana = 100 * $_SESSION['hero']['pm'] / $_SESSION['hero']['pmMax'];
                     </div>
                 </div>  
             </div>
-
-            <h2 style="color: white">Quelle action voulez vous faire?</h2>
-            <div class="row justify-content-md-center">
-                <div class="col col-md-auto">
-                    <button class="btn btn-secondary" onClick="hero.attaque(monster)">Attaquer</button>
-                </div>
-
-                <div class="col col-md-auto">
-                    <button class="btn btn-secondary" onClick="hero.regeneration(monster)">regen</button>
-                </div>
-
-                <div class="col col-md-auto">
-                    <button class="btn btn-secondary" onCLick="hero.spellHero(monster)"><?= $_SESSION['hero']['sort'] ?> cout : <?= $_SESSION['hero']['coutPm'] ?>PM</button>
-                </div>
-            </div>
-            <br>
-            <p id="erreurAction" style="font-weight: bold;color: red"></p>
         </div>
-    </div>    
+    </div>
 </div>
 <script>
 const bodyStyle = document.getElementById('body')
@@ -105,6 +115,32 @@ bodyStyle.style.backgroundSize = "cover";
             this.crit = crit
         }
 
+        isWin(){
+            this.afficheInfo('actionJoueur', 'Bravo, tu as gagner')
+            this.afficheInfo('consequenceAction', '')
+            this.afficheInfo('actionMonster', '')
+            this.afficheInfo('buttonAction', `<div class="col col-md-auto" style="width:150px;">
+                                            <button class="btn btn-secondary" onClick="hero.menuCombat()">Retour au camps</button>
+                                        </div>`)
+        }
+
+        isLose(){
+            this.afficheInfo('actionJoueur', 'Dommage tu as perdu')
+            this.afficheInfo('consequenceAction', '')
+            this.afficheInfo('actionMonster', '')
+            this.afficheInfo('buttonAction', `<div class="col col-md-auto" style="width:150px;">
+                                            <button class="btn btn-secondary" onClick="hero.menu()">Retour au menu</button>
+                                        </div>`)
+        }
+
+        menuCombat(){
+            document.location.href = 'asset/php/traitement/finFight.php?pvHero='+this.pv+'&pmHero='+this.pm+'&status=win'
+        }
+
+        menu(){
+            document.location.href = 'index.php?page=infojoueur'
+        }
+
         getRandomInt(max){
             return Math.floor(Math.random() * (max + 1));
         }
@@ -123,6 +159,17 @@ bodyStyle.style.backgroundSize = "cover";
             const pourcent = 100 * Actual / AuMax
             barreVie.style.width = pourcent+'%'
             barreVie.innerHTML = Actual+'/'+AuMax
+        }
+
+        animationCombat(premierBarre, cible){
+            const imgHero = document.getElementById('imgHero')
+            const imgMonster = document.getElementById('imgmonster')
+            imgHero.style.left = '60%'
+            setTimeout(() => {this.modifBarreVie(premierBarre, cible.pv, cible.vieMax)}, 300);
+            setTimeout(() => {imgHero.style.left = '80%'}, 500)
+            setTimeout(() => {imgMonster.style.right = '55%'}, 800)
+            setTimeout(() => {this.modifBarreVie("barreVieHero", this.pv, this.vieMax)}, 1000);
+            setTimeout(() => {imgMonster.style.right = '75%'}, 1400)
         }
 
         afficheInfo(ou, quoi){
@@ -149,7 +196,9 @@ bodyStyle.style.backgroundSize = "cover";
             }
             const degat = pvCible - cible.pv
             if(cible.pv <= 0){
-                document.location.href = 'asset/php/traitement/finFight.php?pvHero='+this.pv+'&pmHero='+this.pm+'&status=win'
+                const barre = document.getElementById('barreVieEnnemie')
+                barre.style.width = "0%"
+                this.isWin()
             }else{
                 const pvRestant = this.pv
                 if(this.isCrit(5)){
@@ -160,12 +209,10 @@ bodyStyle.style.backgroundSize = "cover";
                 }
 
                 if(this.pv <= 0){
-                    document.location.href = 'asset/php/traitement/finFight.php?&status=lose'
+                    const barre = document.getElementById('barreVieHero')
+                    barre.style.width = "0%"
+                    this.isLose()
                 }else{
-                
-                    this.modifBarreVie("barreVieEnnemie", cible.pv, cible.vieMax)
-                    this.modifBarreVie("barreVieHero", this.pv, this.vieMax)
-                    
                     if(this.crit === null){
                         this.afficheInfo('actionJoueur', '<p>'+cible.name+' c\'est fait attaquer et a subi '+degat+' point de dégat</p>')
                     }else{
@@ -182,7 +229,7 @@ bodyStyle.style.backgroundSize = "cover";
                         this.afficheInfo('actionMonster', '<p>'+this.name+' a subie un <span style="font-weight: bold;color: red;">Coup Critique</span> et a reçu '+degatRecu+' point de dégat</p>')
                         cible.crit = null
                     }
-                
+                    this.animationCombat('barreVieEnnemie', cible)
                 }
             }
 
@@ -209,12 +256,13 @@ bodyStyle.style.backgroundSize = "cover";
             pvActualHero = this.pv
             this.attaqueMonster(attaquand)
             if(this.pv <= 0){
-                document.location.href = 'asset/php/traitement/finFight.php?&status=lose'
+                const barre = document.getElementById('barreVieHero')
+                barre.style.width = "0%"
+                this.isLose()
             }else{
                 this.afficheInfo('actionJoueur', '<p>'+this.name+' c\'est Régénérer de '+nbRegeneration+'</p>')
                 this.afficheInfo('consequenceAction', '<p>'+attaquand.name+' en a profité pour attaquer</p>')
                 const degat = pvActualHero - this.pv
-                this.modifBarreVie("barreVieHero", this.pv, this.vieMax)
                 if(attaquand.crit === null){
                     this.afficheInfo('actionMonster', '<p>'+this.name+' c\'est fait attaquer et a subi '+degat+' point de dégat</p>')
                 }else{
@@ -222,6 +270,7 @@ bodyStyle.style.backgroundSize = "cover";
                     attaquand.crit = null
                 }
             }
+            this.animationCombat('barreVieHero', attaquand)
 
             this.spellTimeCount()
             this.afficheInfo('erreurAction', '')
@@ -235,7 +284,6 @@ bodyStyle.style.backgroundSize = "cover";
                 if(this.spell === 'Boost'){
                     this.pm = this.pm - 2
                     this.atk = this.atk * 2
-                    this.modifBarreVie("barreManaHero", this.pm, pmMaxHero)
                     this.spellTime = 1
                     phrase = "c'est booster son atk pour 1 tour"
                 }
@@ -243,11 +291,11 @@ bodyStyle.style.backgroundSize = "cover";
                 if(this.spell === 'Boule de Feu'){
                         this.pm = this.pm - coutSpell
                         attaquand.pv = attaquand.pv - 20
-                        this.modifBarreVie("barreManaHero", this.pm, pmMaxHero)
                         if(attaquand.pv <= 0){
-                            document.location.href = 'asset/php/traitement/finFight.php?pvHero='+this.pv+'&pmHero='+this.pm+'&status=win'
+                            const barre = document.getElementById('barreVieEnnemie')
+                            barre.style.width = "0%"
+                            this.isWin()
                         }else{
-                            this.modifBarreVie('barreVieEnnemie', attaquand.pv, attaquand.vieMax)
                             phrase = "a lancer une boule de feu sur "+attaquand.name
                         }
                 }
@@ -257,9 +305,28 @@ bodyStyle.style.backgroundSize = "cover";
                     this.attaqueMonster(attaquand)
                     const degat = pvActualHero - this.pv
                     if(this.pv <= 0){
-                        document.location.href = 'asset/php/traitement/finFight.php?&status=lose'
+                        const barre = document.getElementById('barreVieHero')
+                        barre.style.width = "0%"
+                        this.isLose()
                     }else{
-                        this.modifBarreVie("barreVieHero", this.pv, this.vieMax)
+                        const imgHero = document.getElementById('imgHero')
+                        const imgMonster = document.getElementById('imgmonster')
+                        imgHero.style.left = '60%'
+                        setTimeout(() => {this.modifBarreVie("barreManaHero", this.pm, pmMaxHero)}, 300);
+                        if(this.spell === "Boost"){
+                            setTimeout(() => {imgHero.style.left = '80%'}, 500)
+                            setTimeout(() => {imgMonster.style.right = '55%'}, 800)
+                            setTimeout(() => {this.modifBarreVie("barreVieHero", this.pv, this.vieMax)}, 1000);
+                            setTimeout(() => {imgMonster.style.right = '75%'}, 1400)
+                        }
+                        if(this.spell === "Boule de Feu"){
+                            setTimeout(() => {this.modifBarreVie('barreVieEnnemie', attaquand.pv, attaquand.vieMax)}, 500)
+                            setTimeout(() => {imgHero.style.left = '80%'}, 800)
+                            setTimeout(() => {imgMonster.style.right = '55%'}, 1000)
+                            setTimeout(() => {this.modifBarreVie("barreVieHero", this.pv, this.vieMax)}, 1400);
+                            setTimeout(() => {imgMonster.style.right = '75%'}, 1800)
+                        }
+
                         this.afficheInfo('actionJoueur', '<p>'+this.name+' '+phrase+'</p>')
                         this.afficheInfo('consequenceAction', '<p>'+attaquand.name+' a attaquer</p>')
                         if(attaquand.crit === null){

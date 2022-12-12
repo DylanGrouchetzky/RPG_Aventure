@@ -1,12 +1,5 @@
 <?php
 
-if(isset($_SESSION['status']) && $_SESSION['status'] === 'lose' ){
-    
-    $lose = '<p style="font-weight: bold;">'.$_SESSION['hero']['name'].' c\'est fait battre</p>';
-    $_SESSION['status'] = '';
-
-}
-
 if(!empty($_SESSION['monster'])){
     
     $_SESSION['monster'] = [];
@@ -22,15 +15,6 @@ if(!empty($_SESSION['hero'])){
 ?>
 <div class="container" style="text-align:center;">    
     <h1>Bienvenue Joueur</h1>
-    <?php
-
-    if(isset($lose)){
-        echo $lose;
-    }else{
-        echo '<br>';
-    }
-
-    ?>
     <div class="row justify-content-md-center" id="formJoueur">
         <div class="col col-md-auto">
             <form name="joueur">

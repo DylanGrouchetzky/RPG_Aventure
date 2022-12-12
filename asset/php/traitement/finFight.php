@@ -14,8 +14,3 @@ if($_SESSION['hero']['etage'] === 'Rez-de-chaussée'){
 
 header('Location: ../../../index.php?page=infocombat');
 }
-
-if($_GET['status'] === 'lose'){
-    $_SESSION['status'] = 'lose';
-    header('Location: ../../../index.php?page=infojoueur');
-}

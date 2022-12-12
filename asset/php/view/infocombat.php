@@ -1,12 +1,5 @@
 <?php
 
-if(isset($_SESSION['status']) && $_SESSION['status'] === 'win' ){
-    
-    $win = '<p style="font-weight: bold;">Bravo vous avez réussi votre combat</p>';
-    $_SESSION['status'] = '';
-
-}
-
 $_SESSION['hero']['atk'] = $_SESSION['hero']['atkInitial'];
 
 if($_SESSION['hero']['etage'] === 0){
@@ -28,7 +21,7 @@ if($pourcentVieHero <= 35){
 
 $NbRandomEvent = rand(0, 100);
 
-if($NbRandomEvent <= 60){
+if($NbRandomEvent <= 70){
     $event = 'fightMonster';
 }else{
     $event = 'event1';
