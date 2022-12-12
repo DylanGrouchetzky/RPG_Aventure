@@ -24,15 +24,11 @@ if($pourcentVieHero <= 35){
     <h1 style="text-decoration: underline red;">Bonjour Aventurier</h1>
 <?php
 
-if(isset($win)){
-    echo $win;
-}else{
-    echo '<br>';
-}
+
 
 $NbRandomEvent = rand(0, 100);
 
-if($NbRandomEvent <= 75){
+if($NbRandomEvent <= 50){
     $event = 'fightMonster';
 }else{
     $event = 'event1';

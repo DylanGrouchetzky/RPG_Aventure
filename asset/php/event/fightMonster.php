@@ -1,4 +1,9 @@
 <?php
+if(isset($win)){
+    echo $win;
+}else{
+    echo '<br>';
+}
 
 $NbRandom = rand(1, 4);
 
