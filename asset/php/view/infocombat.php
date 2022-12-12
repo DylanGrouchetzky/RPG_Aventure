@@ -28,7 +28,7 @@ if($pourcentVieHero <= 35){
 
 $NbRandomEvent = rand(0, 100);
 
-if($NbRandomEvent <= 50){
+if($NbRandomEvent <= 60){
     $event = 'fightMonster';
 }else{
     $event = 'event1';
