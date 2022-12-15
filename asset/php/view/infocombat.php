@@ -18,13 +18,20 @@ if($pourcentVieHero <= 35){
 <?php
 
 
+if($_SESSION['hero']['etage'] != -10){
+    $NbRandomEvent = rand(0, 100);
+}else{
+    $NbRandomEvent = 50 ;
+}
+$listeEvent = array("vendeur", "amulette");
 
-$NbRandomEvent = rand(0, 100);
+$NblisteEvent = count($listeEvent) - 1;
+$NbRandomEvents = rand(0 , $NblisteEvent);
 
-if($NbRandomEvent <= 70){
+if($NbRandomEvent < 50){
     $event = 'fightMonster';
 }else{
-    $event = 'event1';
+    $event = $listeEvent[$NbRandomEvents];
 }
 
 require ('asset/php/event/'.$event.'.php');

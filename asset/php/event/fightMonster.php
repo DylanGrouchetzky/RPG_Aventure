@@ -1,8 +1,7 @@
 <?php
-
 $NbRandom = rand(1, 4);
 
-if($_SESSION['hero']['killNumbers'] != 10 ){
+if($_SESSION['hero']['etage'] != -10){
     if(!isset($_SESSION['monster']) || empty($_SESSION['monster'])){
 
         $infoMonster = $database->Query('monster', 'WHERE id = "'.$NbRandom.'"');
@@ -86,7 +85,7 @@ if($_SESSION['hero']['killNumbers'] != 10 ){
     <div class="col col-md-auto" style="width: 25rem;">
         <p style="font-weight: bold;">Ton prochaine adversaire sera</p>
         <?php
-        if($_SESSION['hero']['killNumbers'] != 10){
+        if($_SESSION['hero']['etage'] != -10){
         ?>
         <table class="table table-bordered border-dark">
             <tbody style="text-align:center">

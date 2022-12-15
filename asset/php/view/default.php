@@ -4,6 +4,8 @@
         <link rel="stylesheet" href="asset/css/style.css">      
         <title>RPG Aventure</title>
         <script src="asset/js/class/Combat.js"></script>
+        <script src="asset/js/class/vendeur.js"></script>
+        <script src="asset/js/class/amulette.js"></script>
     </head>
     <body id="body">
         <?= $content ?>

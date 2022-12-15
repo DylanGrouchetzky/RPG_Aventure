@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 11 déc. 2022 à 12:51
+-- Généré le : jeu. 15 déc. 2022 à 19:18
 -- Version du serveur : 10.4.25-MariaDB
 -- Version de PHP : 8.1.10
 
@@ -41,7 +41,7 @@ CREATE TABLE `boss` (
 --
 
 INSERT INTO `boss` (`id`, `name`, `pv`, `atk`, `def`, `img`) VALUES
-(1, 'Crow', 200, 35, 14, 'Crow.jpg');
+(1, 'Crow', 200, 35, 14, 'Crow.png');
 
 -- --------------------------------------------------------
 

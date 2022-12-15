@@ -19,8 +19,15 @@ $pourcentMana = 100 * $_SESSION['hero']['pm'] / $_SESSION['hero']['pmMax'];
         </div>
     </div>    
 </div>
-<img src="asset/public/classes/guerrierer.png" style="position: absolute;bottom: 250px; left: 80%; width: 300px; height: 300px" id="imgHero">
-<img src="asset/public/monster/<?= $_SESSION['monster']['img'] ?>" style="position: absolute;bottom: 250px; right: 75%; width: 400px; height: 400px" id="imgmonster">
+<img src="asset/public/classes/<?= $_SESSION['hero']['img'] ?>" style="position: absolute;bottom: 250px; left: 80%; width: 300px; height: 300px" id="imgHero">
+<?php 
+if($_SESSION['hero']['etage'] != -10){
+    $src="asset/public/monster/";
+}else{
+    $src="asset/public/monster/boss/";
+}
+?>
+<img src="<?= $src ?><?= $_SESSION['monster']['img'] ?>" style="position: absolute;bottom: 250px; right: 75%; width: 400px; height: 400px" id="imgmonster">
 <div style="height: 200px;width: 100%;position: absolute;bottom: 0px;border: 5px solid red;border-radius: 5px;padding: 70px 5px 0px 5px;background-image: url('asset/public/fontActionCombat.png')">
     <div class="row">
         <div class="col">
