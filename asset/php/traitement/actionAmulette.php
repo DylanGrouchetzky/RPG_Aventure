@@ -7,8 +7,8 @@ if($_GET['action'] === 'bonus'){
         $_SESSION['hero']['pv'] = $_SESSION['hero']['pv'] +10;
     }
     if($_GET['caractéristique'] === "pm"){
-        $_SESSION['hero']['pmMax'] = $_SESSION['hero']['pmMax'] +10;
-        $_SESSION['hero']['pm'] = $_SESSION['hero']['pm'] + 10;
+        $_SESSION['hero']['pmMax'] = $_SESSION['hero']['pmMax'] +15;
+        $_SESSION['hero']['pm'] = $_SESSION['hero']['pm'] + 15;
     }
     if($_GET['caractéristique'] === "atk"){
         $_SESSION['hero']['atkInitial'] = $_SESSION['hero']['atkInitial'] + 5;

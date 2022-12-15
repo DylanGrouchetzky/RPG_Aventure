@@ -28,7 +28,7 @@ $listeEvent = array("vendeur", "amulette");
 $NblisteEvent = count($listeEvent) - 1;
 $NbRandomEvents = rand(0 , $NblisteEvent);
 
-if($NbRandomEvent < 50){
+if($NbRandomEvent < 55){
     $event = 'fightMonster';
 }else{
     $event = $listeEvent[$NbRandomEvents];
