@@ -3,6 +3,18 @@
 $pourcentHero = 100 * $_SESSION['hero']['pv'] / $_SESSION['hero']['pvMax'];
 $pourcentMana = 100 * $_SESSION['hero']['pm'] / $_SESSION['hero']['pmMax'];
 
+function multipleDe($nombre, $multiple){
+    if($nombre === 'Rez-de-chaussée'){
+        $nombre = 1;
+    }
+    if($nombre % $multiple == 0){
+        return true;
+    }else{
+        return false;
+    }
+}
+$boss = multipleDe($_SESSION['hero']['etage'], 10);
+
 ?>
 <div class="container" style="text-align: center; margin-top: 50px;">
     <div class="row justify-content-md-center">
@@ -21,7 +33,7 @@ $pourcentMana = 100 * $_SESSION['hero']['pm'] / $_SESSION['hero']['pmMax'];
 </div>
 <img src="asset/public/classes/<?= $_SESSION['hero']['img'] ?>" style="position: absolute;bottom: 250px; left: 80%; width: 300px; height: 300px" id="imgHero">
 <?php 
-if($_SESSION['hero']['etage'] != -10){
+if( $boss === false){
     $src="asset/public/monster/";
 }else{
     $src="asset/public/monster/boss/";

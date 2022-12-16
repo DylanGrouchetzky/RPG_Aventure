@@ -1,9 +1,20 @@
 <?php
-$NbRandom = rand(1, 4);
 
-if($_SESSION['hero']['etage'] != -10){
+function multipleDe($nombre, $multiple){
+    if($nombre === 'Rez-de-chaussée'){
+        $nombre = 1;
+    }
+    if($nombre % $multiple == 0){
+        return true;
+    }else{
+        return false;
+    }
+}
+$boss = multipleDe($_SESSION['hero']['etage'], 10);
+
+if( $boss === false){
     if(!isset($_SESSION['monster']) || empty($_SESSION['monster'])){
-
+        $NbRandom = rand(1, 4);
         $infoMonster = $database->Query('monster', 'WHERE id = "'.$NbRandom.'"');
         $infoMonster = $infoMonster->fetch();
 
@@ -18,7 +29,8 @@ if($_SESSION['hero']['etage'] != -10){
 
     }
 }else{
-    $infoMonster = $database->Query('boss', 'WHERE id = "1"');
+    $NbRandom = rand(1, 2);
+    $infoMonster = $database->Query('boss', 'WHERE id = "'.$NbRandom.'"');
     $infoMonster = $infoMonster->fetch();
 
     $_SESSION['monster'] = [
@@ -85,7 +97,7 @@ if($_SESSION['hero']['etage'] != -10){
     <div class="col col-md-auto" style="width: 25rem;">
         <p style="font-weight: bold;">Ton prochaine adversaire sera</p>
         <?php
-        if($_SESSION['hero']['etage'] != -10){
+        if( $boss === false){
         ?>
         <table class="table table-bordered border-dark">
             <tbody style="text-align:center">
